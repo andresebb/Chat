@@ -1,30 +1,15 @@
 const { Router } = require("express");
+const { crearUsuario, login, renewToken } = require("../controllers/auth");
 
 const router = Router();
 
-// Crear Nuevos Usuario
-router.post("/new", (req, res) => {
-  res.json({
-    ok: true,
-    msg: "New User",
-  });
-});
+// Crear Usuario
+router.post("/new", crearUsuario);
 
-//Login
-router.post("/", (req, res) => {
-  res.json({
-    ok: true,
-    msg: "Login success",
-  });
-});
+//Login Usuario
+router.post("/", login);
 
 //Revalidar Token
-
-router.get("/renew", (req, res) => {
-  res.json({
-    ok: true,
-    msg: "Token Validated",
-  });
-});
+router.get("/renew", renewToken);
 
 module.exports = router;
