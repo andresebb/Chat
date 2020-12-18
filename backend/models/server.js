@@ -27,6 +27,12 @@ class Server {
   middlewares() {
     // Desplegar el directorio público
     this.app.use(express.static(path.resolve(__dirname, "../public")));
+
+    //Cors
+
+    //Api ENDPoints
+
+    this.app.use("/api/login", require("../router/auth"));
   }
 
   // Esta configuración se puede tener aquí o como propieda de clase
