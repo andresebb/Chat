@@ -5,11 +5,15 @@ const socketio = require("socket.io");
 const path = require("path");
 
 const Sockets = require("./sockets");
+const { dbConnection } = require("../database/config");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+
+    //Conectar a DB
+    dbConnection();
 
     // Http server
     this.server = http.createServer(this.app);
