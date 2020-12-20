@@ -23,7 +23,7 @@ const crearUsuario = async (req, res) => {
     usuario.password = bcrypt.hashSync(password, salt);
 
     //Generar JWT
-    const token = await generarJWT(usuario.id, usuario.nombre);
+    const token = await generarJWT(usuario.id);
 
     //Guardar usuario en base de datos
     await usuario.save();
@@ -67,7 +67,7 @@ const login = async (req, res) => {
     }
 
     //Generar JWT
-    const token = await generarJWT(usuarioDB.id, usuarioDB.nombre);
+    const token = await generarJWT(usuarioDB.id);
 
     res.json({
       ok: true,
@@ -85,9 +85,21 @@ const login = async (req, res) => {
 };
 
 const renewToken = async (req, res) => {
+  //Este viene el middlewares validar-jwt
+  const uid = req.uid;
+
+  //Generar nuevo JWT
+  const token = await generarJWT(uid);
+
+  //Obtener el usuario por uid
+
+  const usuario = await Usuario.findById(uid);
+
   res.json({
     ok: true,
-    msg: "Token Validated",
+    msg: "New Token",
+    usuario,
+    token,
   });
 };
 
