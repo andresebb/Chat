@@ -20,7 +20,7 @@ const validarJWT = async (req, res, next) => {
   } catch (e) {
     return res.status(401).json({
       ok: false,
-      msg: "Token no es valido",
+      msg: "Token no es valido o  mal id de usuario",
     });
   }
 };
