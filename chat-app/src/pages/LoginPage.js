@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../auth/AuthContext";
 
 export const LoginPage = () => {
+  const { login } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -32,11 +35,14 @@ export const LoginPage = () => {
 
   const onSubmit = (ev) => {
     ev.preventDefault();
-    console.log(form);
 
     form.rememberme
       ? localStorage.setItem("email", form.email)
       : localStorage.removeItem("email");
+
+    //Enviar al backend
+    const { email, password } = form;
+    login(email, password);
   };
 
   const toggleCheck = () => {
