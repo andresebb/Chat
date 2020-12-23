@@ -17,11 +17,12 @@ export const LoginPage = () => {
     const remembermeEmail = localStorage.getItem("email");
 
     if (remembermeEmail) {
-      setForm({
+      //Lo hacemos asi para que react no nos diga que a le hace falta una dependencia al useEffect
+      setForm((form) => ({
         ...form,
         email: remembermeEmail,
         rememberme: true,
-      });
+      }));
     }
   }, []);
 
