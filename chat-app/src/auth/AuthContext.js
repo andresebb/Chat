@@ -3,7 +3,7 @@ import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 
 export const AuthContext = createContext();
 
-//Checking es para ver si le mostamos la pantalla de carga o no
+//Checking es para ver si le mostamos la pantalla de carga o no, si es true se la mostramos
 const initialState = {
   uid: null,
   checking: true,

@@ -12,7 +12,7 @@ const validarJWT = async (req, res, next) => {
       });
     }
 
-    //Verificamos el token
+    //Verificamos que el token haya sido firmado con la llave correspondiente y luego sacamos el id
     const { uid } = jwt.verify(token, process.env.JWT_KEY);
     req.uid = uid;
 
