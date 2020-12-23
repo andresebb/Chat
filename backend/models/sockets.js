@@ -14,11 +14,10 @@ class Sockets {
         msg: "bienvenido al server",
       });
 
-      // Escuchar evento: mensaje-to-server
-      socket.on("mensaje-to-server", (data) => {
-        console.log(data);
+      //On Disconnect
 
-        this.io.emit("mensaje-from-server", data);
+      socket.on("disconnect", () => {
+        console.log("Cliente Desconectado");
       });
     });
   }
