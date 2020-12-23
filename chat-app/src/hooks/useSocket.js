@@ -12,10 +12,15 @@ export const useSocket = (serverPath) => {
 
   //Usamos useCallback porque sino siempre se ejecutaria en el useEffect
   const conectarSocket = useCallback(() => {
+    const token = localStorage.getItem("token");
+
     const socketTemp = io.connect(serverPath, {
       transports: ["websocket"],
       autoConnect: true,
       forceNew: true,
+      query: {
+        "user-token": token,
+      },
     });
     setSocket(socketTemp);
   }, [serverPath]);
@@ -34,10 +39,6 @@ export const useSocket = (serverPath) => {
 
   useEffect(() => {
     socket?.on("disconnect", () => setOnline(false));
-  }, [socket]);
-
-  useEffect(() => {
-    socket?.on("mensaje-bienvenida", (data) => console.log(data));
   }, [socket]);
 
   return {
