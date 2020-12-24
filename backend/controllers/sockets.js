@@ -25,7 +25,9 @@ const grabarMensaje = async (payload) => {
     const mensaje = new Mensaje(payload);
     await mensaje.save();
     return mensaje;
-  } catch {}
+  } catch(e){
+    console.log(e)
+  }
 };
 
 module.exports = {
