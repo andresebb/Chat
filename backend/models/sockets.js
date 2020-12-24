@@ -1,3 +1,7 @@
+const {
+  usuarioConectado,
+  usuarioDesconectado,
+} = require("../controllers/sockets");
 const { comprobarJWT } = require("../helpers/jwt");
 
 class Sockets {
@@ -9,7 +13,7 @@ class Sockets {
 
   socketEvents() {
     // On connection
-    this.io.on("connection", (socket) => {
+    this.io.on("connection", async (socket) => {
       console.log("cliente conectado");
 
       // Obtener User a traves del token enviado por socket
@@ -21,12 +25,12 @@ class Sockets {
         return socket.disconnect();
       }
 
-      console.log("Cliente Conectado", uid);
+      await usuarioConectado(uid);
 
       //On Disconnect
 
-      socket.on("disconnect", () => {
-        console.log("Cliente Desconectado");
+      socket.on("disconnect", async () => {
+        await usuarioDesconectado(uid);
       });
     });
   }
