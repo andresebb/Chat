@@ -14,7 +14,7 @@ export const SideBar = () => {
       {chatState.usuarios
         .filter((user) => user.uid !== auth.uid)
         .map((user) => {
-          return <SidebarChatItem key={user.uid} data={user} />;
+          return <SidebarChatItem key={user.uid} usuario={user} />;
         })}
 
       {/* <!-- Espacio extra para scroll --> */}
