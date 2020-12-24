@@ -2,6 +2,7 @@ const {
   usuarioConectado,
   usuarioDesconectado,
   getUsuarios,
+  grabarMensaje,
 } = require("../controllers/sockets");
 
 const { comprobarJWT } = require("../helpers/jwt");
@@ -36,8 +37,9 @@ class Sockets {
       this.io.emit("lista-usuarios", await getUsuarios());
 
       //Escuchar cuando el cliente manda el mensaje
-      socket.on("mensaje-personal", (data) => {
-        console.log(data);
+      socket.on("mensaje-personal", async (payload) => {
+        const mensaje = await grabarMensaje(payload);
+        console.log(mensaje);
       });
 
       //On Disconnect
