@@ -39,7 +39,10 @@ class Sockets {
       //Escuchar cuando el cliente manda el mensaje
       socket.on("mensaje-personal", async (payload) => {
         const mensaje = await grabarMensaje(payload);
-        console.log(mensaje);
+
+        //Emite msg a la sala que tiene ese id
+        this.io.to(payload.para).emit("mensaje-personal", mensaje);
+        this.io.to(payload.de).emit("mensaje-personal", mensaje);
       });
 
       //On Disconnect
