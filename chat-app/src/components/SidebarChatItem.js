@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SidebarChatItem = () => {
+export const SidebarChatItem = ({ data }) => {
   return (
     <>
       <div className="chat_list active_chat">
@@ -12,9 +12,12 @@ export const SidebarChatItem = () => {
             />
           </div>
           <div className="chat_ib">
-            <h5>Some random name</h5>
-            <span className="text-success">Online</span>
-            <span className="text-danger">Offline</span>
+            <h5>{data.nombre}</h5>
+            {data.online ? (
+              <span className="text-success">Online</span>
+            ) : (
+              <span className="text-danger">Offline</span>
+            )}
           </div>
         </div>
       </div>
