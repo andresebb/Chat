@@ -9,9 +9,10 @@ export const Messages = () => {
   const { chatState } = useContext(ChatContext);
   const { auth } = useContext(AuthContext);
 
+  //El id de mensajes es del scrool-react
   return (
     <div className="mesgs">
-      <div className="msg_history">
+      <div id="mensajes" className="msg_history">
         {chatState.mensajes.map((msg) =>
           msg.para === auth.uid ? (
             <IncomingMessage key={msg._id} msg={msg} />
