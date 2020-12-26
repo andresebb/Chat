@@ -4,8 +4,6 @@ import { ChatContext } from "../context/chat/ChatContext";
 import { SidebarChatItem } from "./SidebarChatItem";
 
 export const SideBar = () => {
-  const chats = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   const { chatState } = useContext(ChatContext);
   const { auth } = useContext(AuthContext);
 
