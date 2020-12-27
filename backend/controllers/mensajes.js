@@ -1,4 +1,3 @@
-const mensaje = require("../models/mensaje");
 const Mensaje = require("../models/mensaje");
 
 const obtenerChat = async (req, res) => {
@@ -16,16 +15,16 @@ const obtenerChat = async (req, res) => {
         para: miId,
       },
     ],
-  })
-    .sort({
-      createdAt: "asc",
-    })
-    .limit(100);
+  }).sort({
+    createdAt: "asc",
+  });
+
+  const mis30 = last30.slice(-30);
 
   res.json({
     ok: true,
     mensajes: "Hola",
-    mensajes: last30,
+    mensajes: mis30,
   });
 };
 

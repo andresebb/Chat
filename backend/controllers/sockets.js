@@ -2,10 +2,14 @@ const Usuario = require("../models/usuario");
 const Mensaje = require("../models/mensaje");
 
 const usuarioConectado = async (uid) => {
-  const usuario = await Usuario.findById(uid);
-  usuario.online = true;
-  await usuario.save();
-  return usuario;
+  try {
+    const usuario = await Usuario.findById(uid);
+    usuario.online = true;
+    await usuario.save();
+    return usuario;
+  } catch (e) {
+    console.log(e);
+  }
 };
 const usuarioDesconectado = async (uid) => {
   const usuario = await Usuario.findById(uid);
@@ -25,8 +29,8 @@ const grabarMensaje = async (payload) => {
     const mensaje = new Mensaje(payload);
     await mensaje.save();
     return mensaje;
-  } catch(e){
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   }
 };
 
